@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				amazon: 'hsl(var(--amazon))',
+				flipkart: 'hsl(var(--flipkart))',
+				myntra: 'hsl(var(--myntra))',
+				nykaa: 'hsl(var(--nykaa))',
+				meesho: 'hsl(var(--meesho))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

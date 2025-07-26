@@ -35,6 +35,20 @@ export const ProductAnalyzer = () => {
   const [progress, setProgress] = useState(0);
   const { toast } = useToast();
 
+  const generateRealUrl = (platform: string, productName: string): string => {
+    const searchQuery = encodeURIComponent(productName.toLowerCase());
+    
+    const urlMap: Record<string, string> = {
+      'Amazon': `https://www.amazon.in/s?k=${searchQuery}`,
+      'Flipkart': `https://www.flipkart.com/search?q=${searchQuery}`,
+      'Myntra': `https://www.myntra.com/${searchQuery}`,
+      'Nykaa': `https://www.nykaa.com/search/result/?q=${searchQuery}`,
+      'Meesho': `https://www.meesho.com/search?q=${searchQuery}`
+    };
+    
+    return urlMap[platform] || '#';
+  };
+
   const mockAnalysis = async (input: string): Promise<AnalysisResult> => {
     // Simulate AI analysis with realistic delays
     const steps = [
@@ -77,28 +91,28 @@ export const ProductAnalyzer = () => {
           score: Math.random() * 30 + 70,
           reviewCount: Math.floor(Math.random() * 5000) + 1000,
           price: '₹' + (Math.random() * 50000 + 10000).toFixed(0),
-          url: '#'
+          url: generateRealUrl('Amazon', detectedProduct)
         },
         {
           name: 'Flipkart',
           score: Math.random() * 30 + 70,
           reviewCount: Math.floor(Math.random() * 3000) + 500,
           price: '₹' + (Math.random() * 50000 + 10000).toFixed(0),
-          url: '#'
+          url: generateRealUrl('Flipkart', detectedProduct)
         },
         {
           name: 'Myntra',
           score: Math.random() * 30 + 70,
           reviewCount: Math.floor(Math.random() * 2000) + 200,
           price: '₹' + (Math.random() * 50000 + 10000).toFixed(0),
-          url: '#'
+          url: generateRealUrl('Myntra', detectedProduct)
         },
         {
           name: 'Nykaa',
           score: Math.random() * 30 + 70,
           reviewCount: Math.floor(Math.random() * 1500) + 100,
           price: '₹' + (Math.random() * 50000 + 10000).toFixed(0),
-          url: '#'
+          url: generateRealUrl('Nykaa', detectedProduct)
         }
       ],
       summary: `Based on comprehensive analysis of ${Math.floor(Math.random() * 10000) + 5000} reviews across multiple platforms, this product shows ${sentiment} sentiment with strong performance in quality and value categories.`

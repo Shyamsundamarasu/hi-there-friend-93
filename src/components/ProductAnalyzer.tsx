@@ -36,14 +36,15 @@ export const ProductAnalyzer = () => {
   const { toast } = useToast();
 
   const generateRealUrl = (platform: string, productName: string): string => {
-    const searchQuery = encodeURIComponent(productName.toLowerCase());
+    const searchQuery = encodeURIComponent(productName.toLowerCase().replace(/\s+/g, '-'));
+    const searchTerm = encodeURIComponent(productName);
     
     const urlMap: Record<string, string> = {
-      'Amazon': `https://www.amazon.in/s?k=${searchQuery}`,
-      'Flipkart': `https://www.flipkart.com/search?q=${searchQuery}`,
-      'Myntra': `https://www.myntra.com/${searchQuery}`,
-      'Nykaa': `https://www.nykaa.com/search/result/?q=${searchQuery}`,
-      'Meesho': `https://www.meesho.com/search?q=${searchQuery}`
+      'Amazon': `https://www.amazon.in/s?k=${searchTerm}&ref=nb_sb_noss`,
+      'Flipkart': `https://www.flipkart.com/search?q=${searchTerm}&as=on&as-show=on&otracker=AS_Query_HistoryAutoSuggest_1_0_na_na_na&otracker1=AS_Query_HistoryAutoSuggest_1_0_na_na_na&as-pos=1&as-type=RECENT&suggestionId=null&requestId=null`,
+      'Myntra': `https://www.myntra.com/search?q=${searchTerm}&searchtype=text`,
+      'Nykaa': `https://www.nykaa.com/search/result/?q=${searchTerm}&sort=popularity`,
+      'Meesho': `https://www.meesho.com/search?q=${searchTerm}&searchType=manual`
     };
     
     return urlMap[platform] || '#';

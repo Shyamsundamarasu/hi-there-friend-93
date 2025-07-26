@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ExternalLink, Star, Users } from 'lucide-react';
 
@@ -53,11 +54,19 @@ export const PlatformAnalysis = ({ platforms }: PlatformAnalysisProps) => {
                   </Badge>
                 )}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <span className={`text-lg font-bold ${getScoreColor(platform.score)}`}>
                   {platform.score.toFixed(1)}
                 </span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-primary" />
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  onClick={() => window.open(platform.url, '_blank')}
+                  className="h-8 px-3"
+                >
+                  <ExternalLink className="w-3 h-3 mr-1" />
+                  VIEW PRODUCT
+                </Button>
               </div>
             </div>
             

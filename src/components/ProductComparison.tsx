@@ -151,9 +151,12 @@ export const ProductComparison = ({ platforms }: ProductComparisonProps) => {
                 of reviews, making it the recommended choice for this product.
               </p>
             </div>
-            <Button className="h-12 px-8 bg-gradient-to-r from-primary to-primary/80">
+            <Button 
+              className="h-12 px-8 bg-gradient-to-r from-primary to-primary/80"
+              onClick={() => window.open(bestPlatform.url, '_blank')}
+            >
               <ExternalLink className="w-4 h-4 mr-2" />
-              View Product
+              VIEW PRODUCT
             </Button>
           </div>
         </CardContent>
